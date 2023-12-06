@@ -1,15 +1,11 @@
 //
 package com.library.librarysite;
 
-import com.library.librarysite.Data.UserRepository;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import java.util.stream.Stream;
-import com.library.librarysite.Data.User;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-@SpringBootApplication
+@SpringBootApplication()
 public class LibrarySiteApplication {
 
 	public static void main(String[] args) {

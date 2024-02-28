@@ -36,7 +36,7 @@ import com.wbruno.librarysite.Security.Services.UserDetailsImpl;
 @RestController
 @RequestMapping
 public class AuthController {
-    //@Autowired
+    @Autowired
     AuthenticationManager authenticationManager;
 
     @Autowired
@@ -45,7 +45,7 @@ public class AuthController {
     @Autowired
     RoleRepository roleRepository;
 
-    //@Autowired
+    @Autowired
     PasswordEncoder encoder;
 
     @Autowired

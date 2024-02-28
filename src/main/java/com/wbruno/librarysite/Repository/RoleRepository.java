@@ -9,6 +9,6 @@ import com.wbruno.librarysite.Model.ERole;
 import com.wbruno.librarysite.Model.Role;
 
 @Repository
-public interface RoleRepository {
+public interface RoleRepository extends JpaRepository<Role, Long> {
     Optional<Role> findByName(ERole name);
 }

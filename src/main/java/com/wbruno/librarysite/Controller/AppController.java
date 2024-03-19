@@ -2,49 +2,46 @@ package com.wbruno.librarysite.Controller;
 
 import com.wbruno.librarysite.Model.User;
 
-import com.wbruno.librarysite.Repository.UserRepository;
+import com.wbruno.librarysite.Services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.security.Principal;
 
-@Controller
+@RequestMapping(value = "user")
+@CrossOrigin(origins = "http://localhost:4200")
+@RestController
 public class AppController {
     @Autowired
-    private UserRepository userRepo;
+    private UserServices userService;
 
-    @GetMapping("")
-    public String viewHomePage() {
-        return "index.html";
+    public Principal user(Principal user) {
+        return user;
     }
 
-    @GetMapping("/users")
-    public String listUsers(Model model) {
-        List<User> listUsers = userRepo.findAll();
-        model.addAttribute("listUsers", listUsers);
-
-        return "users";
+    @GetMapping
+    public List<User> findAllUser() {
+        return this.userService.findAll();
     }
 
-    @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new User());
-
-        return "signup_form";
+    @GetMapping(value = "/{id}")
+    public User findById(@PathVariable int id) {
+        return this.userService.findById(id);
     }
 
-    @PostMapping("/process_register")
-    public String processRegister(User user) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
+    @PostMapping
+    public User registerUser(@RequestBody User user) {
+        return this.userService.insert(user);
+    }
 
-        userRepo.save(user);
+    @PutMapping(value = "/{id}")
+    public User updateUser(@PathVariable int id, @RequestBody User user) {
+        return this.userService.updateUser(id, user);
+    }
 
-        return "register_success";
+    @DeleteMapping(value = "/{id}")
+    public void deleteUser(@PathVariable int id) {
+        this.userService.delete(id);
     }
 }

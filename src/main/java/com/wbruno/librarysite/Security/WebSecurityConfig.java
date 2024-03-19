@@ -74,7 +74,7 @@ public class WebSecurityConfig {
     }
 }
 */
-
+/*
 import com.wbruno.librarysite.Security.Services.CustomUserDetailsService;
 
 import org.springframework.context.annotation.Bean;
@@ -87,7 +87,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class WebSecurityConfig   {
+public class WebSecurityConfig {
 
     @Bean
     UserDetailsService userDetailsService() {
@@ -127,4 +127,4 @@ public class WebSecurityConfig   {
 
         return http.build();
     }
-}
+}*/
